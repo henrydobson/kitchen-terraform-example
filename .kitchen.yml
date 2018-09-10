@@ -20,20 +20,20 @@ platforms:
           reporter:
             - cli
 
-        - name: baseline
-          backend: ssh
-          hosts_output: instance_private_ips
-          user: centos
-          key_files:
-            - secrets/cp-prod-app.pem
-          controls:
-            - /os/
-            - /package/
-            - /sysctl/
-            - /ssh/
-            - /sshd/
-          reporter:
-            - cli
+        # - name: baseline
+        #   backend: ssh
+        #   hosts_output: instance_private_ips
+        #   user: centos
+        #   key_files:
+        #     - secrets/cp-prod-app.pem
+        #   controls:
+        #     - /os/
+        #     - /package/
+        #     - /sysctl/
+        #     - /ssh/
+        #     - /sshd/
+        #   reporter:
+        #     - cli
 
         - name: component
           backend: ssh
