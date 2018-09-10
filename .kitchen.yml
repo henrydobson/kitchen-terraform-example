@@ -1,0 +1,59 @@
+---
+driver:
+  name: terraform
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+
+platforms:
+  - name: centos-7
+    verifier:
+      systems:
+        - name: aws
+          backend: aws
+          controls:
+            - /aws/
+          show_progress: true
+          reporter:
+            - cli
+
+        - name: baseline
+          backend: ssh
+          hosts_output: instance_private_ips
+          user: centos
+          key_files:
+            - secrets/cp-prod-app.pem
+          controls:
+            - /os/
+            - /package/
+            - /sysctl/
+            - /ssh/
+            - /sshd/
+          reporter:
+            - cli
+
+        - name: component
+          backend: ssh
+          hosts_output: instance_private_ips
+          user: centos
+          key_files:
+            - secrets/cp-prod-app.pem
+          controls:
+            - /component/
+          show_progress: true
+          reporter:
+            - cli
+
+#
+# name of the integration module you wish to test
+#
+suites:
+  - name: aws-linux-baseline
+    
+
+
+
+
